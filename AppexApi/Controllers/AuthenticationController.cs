@@ -25,6 +25,11 @@ namespace AppexApi.Controllers
                 };
                 throw new HttpResponseException(response);
             }
+        }
+
+        [HttpGet]
+        public IEnumerable<Role> GetUserRoles(string username) {
+            return new List<Role> { new Role { Name = "Admin" } }; 
         } 
     }
 
@@ -32,6 +37,10 @@ namespace AppexApi.Controllers
         public string Username { get; set; }
         public bool IsActive { get; set; }
         public bool IaAdmin { get; set; }
+    }
+
+    public class Role {
+        public string Name { get; set; }
     }
 
 }
