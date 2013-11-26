@@ -16,7 +16,7 @@ namespace AppexApi.Controllers
 
             // return found user or 404 otherwise.
             if (isValid) {
-                return new User { Username = username, IsActive = true, IaAdmin = false };
+                return new User { Username = username, IsActive = true, IsAdmin = false };
             }
             else {
                 var response = new HttpResponseMessage(HttpStatusCode.NotFound) {
@@ -36,7 +36,7 @@ namespace AppexApi.Controllers
     public class User {
         public string Username { get; set; }
         public bool IsActive { get; set; }
-        public bool IaAdmin { get; set; }
+        public bool IsAdmin { get; set; }
     }
 
     public class Role {
