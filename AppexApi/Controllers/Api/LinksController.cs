@@ -11,9 +11,9 @@ namespace AppexApi.Controllers.Api
     {
         public IEnumerable<Link> Get() {
             return new Link[] { 
-                new Link { Title ="Google", Url = "http://google.com" }, 
-                new Link { Title ="Microsoft", Url = "http://microsoft.com" }, 
-                new Link { Title ="Apple", Url = "http://apple.com" } 
+                new Link { Title ="Google", Url = "http://google.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." }, 
+                new Link { Title ="Microsoft", Url = "http://microsoft.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
+                new Link { Title ="Apple", Url = "http://apple.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
             };
         }
     }
@@ -22,5 +22,7 @@ namespace AppexApi.Controllers.Api
     public class Link {
         public string Title { get; set; }
         public string Url { get; set; }
+        public string Description { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }
