@@ -5,3 +5,11 @@
 <h2>jQuery Pocket Reference</h2>
 
 <span id="moni-placeholder"></span>
+
+@section scripts {
+    <script type="text/javascript">
+        var main = Appx.Pocket.Main();
+        main.Init();
+        main.SayHello("Monik");
+    </script>
+}

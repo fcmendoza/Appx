@@ -15,8 +15,14 @@ namespace AppexApi {
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/pocket").Include(
-                        "~/Scripts/pocket.js"));
+            bundles.Add(new ScriptBundle("~/bundles/framework").Include(
+                        "~/Scripts/namespace.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/appx").Include(
+                        "~/Scripts/pocket.js",
+                        "~/Scripts/Links/Index.js"
+            ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
