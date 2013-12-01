@@ -208,6 +208,7 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\namespace.js" />
     <Content Include="Scripts\pocket.js" />
+    <Content Include="Scripts\remedial.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

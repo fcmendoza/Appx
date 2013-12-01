@@ -32,10 +32,42 @@ function thefunction($, undefined) {
             $("#moni-placeholder").text("Hola " + name);
         }
 
+        function displayLinks() {
+            $.ajax({
+                url: "/api/links",
+                data: {},
+                success: function (links) {
+                    render(links);
+                },
+                type: "GET",
+                dataType: 'json'
+            });
+        }
+
+        function render(data) {
+            data = data || [];
+
+            //var dasArray = ko.observableArray(data);
+            var linksArray = new links(data);
+
+            ko.applyBindings(linksArray);
+
+            var content = "";
+            for (var i = 0; i < data.length; i++) {
+                content += "<label>{0}</label>".format(data[i].title);
+            }
+            $("#links-main-container").append(content);
+        }
+
+        var links = function (data) {
+            this.items = ko.observableArray(data);
+        };
+
         return {
             Init: init,
             Sum: sum,
-            SayHello: sayHello
+            SayHello: sayHello,
+            DisplayLinks: displayLinks
         };
 
     };

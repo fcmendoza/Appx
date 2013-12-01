@@ -6,10 +6,29 @@
 
 <span id="moni-placeholder"></span>
 
+<div id="links-main-container"></div>
+
+<table>
+    <thead><tr>
+        <th>Title</th>
+        <th>Url</th>
+        <th>Description</th>
+    </tr></thead>
+    <tbody data-bind="foreach: items">
+        <tr>
+            <td data-bind="text: title"></td>
+            <td data-bind="text: url"></td>
+            <td data-bind="text: description"></td>
+        </tr>    
+    </tbody>
+</table>
+
+
 @section scripts {
     <script type="text/javascript">
         var main = Appx.Pocket.Main();
         main.Init();
         main.SayHello("Monik");
+        main.DisplayLinks();
     </script>
 }
