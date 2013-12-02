@@ -9,19 +9,24 @@
     </script>
 }
 
-<h2>Links</h2>
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">Links</a></p>
+        </div>
+    </div>
+</header>
 
-<table>
-    <thead><tr>
-        <th>Title</th>
-        <th>Url</th>
-        <th>Description</th>
-    </tr></thead>
-    <tbody data-bind="foreach: items">
-        <tr>
-            <td data-bind="text: title"></td>
-            <td data-bind="text: url"></td>
-            <td data-bind="text: description"></td>
-        </tr>    
-    </tbody>
-</table>
+<div id="body">
+    <section class="content-wrapper main-content clear-fix">
+        <h3>Useful links and resources:</h3>
+        <ol class="round" data-bind="foreach: items">
+            <li class="one">
+                <h5 data-bind="text: title">Title</h5>
+                <span data-bind="text: description">Description</span>
+                <a data-bind="text: url, attr: { href: url, title: title }">Url</a>
+            </li>
+        </ol>
+    </section>
+</div>
