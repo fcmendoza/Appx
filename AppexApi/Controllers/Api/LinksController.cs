@@ -104,6 +104,10 @@ namespace AppexApi.Controllers.Api
             new Link { Id = 1, Title ="Google", Url = "http://google.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." }, 
             new Link { Id = 2, Title ="Microsoft", Url = "http://microsoft.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
             new Link { Id = 3, Title ="Apple", Url = "http://apple.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
+            new Link { Id = 4, Title ="Clean Install OS X Mavericks", Url = "http://osxdaily.com/2013/10/26/clean-install-os-x-mavericks", CreatedOn = DateTime.UtcNow, Description = "How to Clean Install OS X Mavericks." },
+            new Link { Id = 5, Title ="Serialize Json camelCasing", Url = "http://www.asp.net/web-api/overview/formats-and-model-binding/json-and-xml-serialization#json_camelcasing", CreatedOn = DateTime.UtcNow, Description = "How to serialize JSON as camel casing in ASP.NET MVC 4 Web Api." },
+            new Link { Id = 6, Title ="Web API CRUD operations", Url = "http://www.asp.net/web-api/overview/creating-web-apis/creating-a-web-api-that-supports-crud-operations", CreatedOn = DateTime.UtcNow, Description = "Creating a Web API (ASP.NET MVC 4) that supports CRUD operations. Sample tutorial." },
+            new Link { Id = 7, Title ="Lenovo ThinkPad X1 Carbon Touch", Url = "http://www.amazon.com/gp/product/B00AQ2DS8S/", CreatedOn = DateTime.UtcNow, Description = "Lenovo ThinkPad X1 Carbon 14-Inch Touchscreen Laptop (Black)3444CUU. $1,600.00 USD." },
         };
     }
 
