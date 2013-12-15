@@ -63,11 +63,26 @@ function thefunction($, undefined) {
             this.items = ko.observableArray(data);
         };
 
+        function dotest() {
+            maptest();
+        }
+
+        function maptest() {
+            var dasArray = $("body").children().map(function () {
+                return this.id;
+            }).toArray();
+
+            $.each(dasArray, function (i, val) {
+                console.log("[{0}] {1}".format(i, val != '' ? val : 'N/A'));
+            });
+        }
+
         return {
             Init: init,
             Sum: sum,
             SayHello: sayHello,
-            DisplayLinks: displayLinks
+            DisplayLinks: displayLinks,
+            DoTest: dotest
         };
 
     };
