@@ -104,10 +104,13 @@ namespace AppexApi.Controllers.Api
             new Link { Id = 1, Title ="Google", Url = "http://google.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." }, 
             new Link { Id = 2, Title ="Microsoft", Url = "http://microsoft.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
             new Link { Id = 3, Title ="Apple", Url = "http://apple.com", CreatedOn = DateTime.UtcNow, Description = "Lorem ipsum dolor sit amet." },
-            new Link { Id = 4, Title ="Clean Install OS X Mavericks", Url = "http://osxdaily.com/2013/10/26/clean-install-os-x-mavericks", CreatedOn = DateTime.UtcNow, Description = "How to Clean Install OS X Mavericks." },
-            new Link { Id = 5, Title ="Serialize Json camelCasing", Url = "http://www.asp.net/web-api/overview/formats-and-model-binding/json-and-xml-serialization#json_camelcasing", CreatedOn = DateTime.UtcNow, Description = "How to serialize JSON as camel casing in ASP.NET MVC 4 Web Api." },
-            new Link { Id = 6, Title ="Web API CRUD operations", Url = "http://www.asp.net/web-api/overview/creating-web-apis/creating-a-web-api-that-supports-crud-operations", CreatedOn = DateTime.UtcNow, Description = "Creating a Web API (ASP.NET MVC 4) that supports CRUD operations. Sample tutorial." },
-            new Link { Id = 7, Title ="Lenovo ThinkPad X1 Carbon Touch", Url = "http://www.amazon.com/gp/product/B00AQ2DS8S/", CreatedOn = DateTime.UtcNow, Description = "Lenovo ThinkPad X1 Carbon 14-Inch Touchscreen Laptop (Black)3444CUU. $1,600.00 USD." },
+            new Link { Id = 4, Title ="Google's Geolocation API", Url = "https://developers.google.com/maps/documentation/geocoding", CreatedOn = DateTime.UtcNow, Description = "Google's Geolocation API." },
+            new Link { Id = 5, Title ="Azure Deployment With Git", Url = "http://blogs.msdn.com/b/carlosfigueira/archive/2012/07/12/creating-asp-net-web-apis-on-azure-web-sites.aspx", CreatedOn = DateTime.UtcNow, Description = "How to deploy to Azure websites using git." },
+            new Link { Id = 6, Title =".NET Fiddle", Url = "http://dotnetfiddle.net", CreatedOn = DateTime.UtcNow, Description = "Like js fiddle but for .NET scripts." },
+            new Link { Id = 7, Title ="Clean Install OS X Mavericks", Url = "http://osxdaily.com/2013/10/26/clean-install-os-x-mavericks", CreatedOn = DateTime.UtcNow, Description = "How to Clean Install OS X Mavericks." },
+            new Link { Id = 8, Title ="Serialize Json camelCasing", Url = "http://www.asp.net/web-api/overview/formats-and-model-binding/json-and-xml-serialization#json_camelcasing", CreatedOn = DateTime.UtcNow, Description = "How to serialize JSON as camel casing in ASP.NET MVC 4 Web Api." },
+            new Link { Id = 9, Title ="Web API CRUD operations", Url = "http://www.asp.net/web-api/overview/creating-web-apis/creating-a-web-api-that-supports-crud-operations", CreatedOn = DateTime.UtcNow, Description = "Creating a Web API (ASP.NET MVC 4) that supports CRUD operations. Sample tutorial." },
+            new Link { Id = 10, Title ="Lenovo ThinkPad X1 Carbon Touch", Url = "http://www.amazon.com/gp/product/B00AQ2DS8S/", CreatedOn = DateTime.UtcNow, Description = "Lenovo ThinkPad X1 Carbon 14-Inch Touchscreen Laptop (Black)3444CUU. $1,600.00 USD." },
         };
     }
 
