@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Todo";
+}
+
+@using AppexApi.Controllers
+@model AppexApi.Controllers.MarkdownViewModel
+
+@Html.Markdown(Model.Body)

@@ -54,6 +54,12 @@ namespace AppexApi.Controllers.Api
             }
         }
 
+        public string GetHttmlFromMarkdown(string url) {
+            var client = new WebClient();
+            var html = client.DownloadString(url);
+            return html;
+        }
+
         /*
             TODO: this private methods must be in a repository that connects to the data source.
         */
