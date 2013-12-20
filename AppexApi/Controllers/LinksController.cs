@@ -13,10 +13,12 @@ namespace AppexApi.Controllers
             return View();
         }
 
-        public ActionResult Todo() {
+        public ActionResult Todo(string style) {
             string htmlText = new Api.LinksController().GetHttmlFromMarkdown(url: "https://dl.dropboxusercontent.com/u/26506865/windows_clean_installation.txt");
 
+            ViewBag.Style = style;
             return View(new MarkdownViewModel { Body = htmlText });
+            //return View("Todo", "_markdownLayout", new MarkdownViewModel { Body = htmlText }); // specifies the view, layout and model to use.
         }
     }
 
@@ -39,6 +41,10 @@ namespace AppexApi.Controllers
         public static IHtmlString Markdown(this HtmlHelper helper, string text) {
             // Transform the supplied text (Markdown) into HTML.
             string html = markdownTransformer.Transform(text);
+
+            // This 'replaces' were added by me (fer)
+            html = html.Replace("<p><code>", "<pre><code>");
+            html = html.Replace("</code></p>", "</code></pre>");
 
             // Wrap the html in an MvcHtmlString otherwise it'll be HtmlEncoded and displayed to the user as HTML :(
             return new MvcHtmlString(html);

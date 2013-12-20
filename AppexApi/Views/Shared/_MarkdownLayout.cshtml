@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @if (!String.IsNullOrWhiteSpace(@ViewBag.Style)) {
+        <link href="/Content/@String.Format("{0}.css", ViewBag.Style)" rel="stylesheet"/>    }
+    else { 
+        @Styles.Render("~/Content/markdown")
+    }
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>
