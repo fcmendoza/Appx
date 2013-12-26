@@ -12,14 +12,6 @@ namespace AppexApi.Controllers
         public ActionResult Index() {
             return View();
         }
-
-        public ActionResult Todo(string style) {
-            string htmlText = new Api.LinksController().GetHttmlFromMarkdown(url: "https://dl.dropboxusercontent.com/u/26506865/windows_clean_installation.txt");
-
-            ViewBag.Style = style;
-            return View(new MarkdownViewModel { Body = htmlText });
-            //return View("Todo", "_markdownLayout", new MarkdownViewModel { Body = htmlText }); // specifies the view, layout and model to use.
-        }
     }
 
     public class MarkdownViewModel {
