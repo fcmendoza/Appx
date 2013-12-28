@@ -140,8 +140,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\github.css" />
     <Content Include="Content\markdown10.css" />
     <Content Include="Content\markdown4.css" />
+    <Content Include="Content\markdown5.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
