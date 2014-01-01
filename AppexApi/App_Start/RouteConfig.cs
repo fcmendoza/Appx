@@ -19,6 +19,13 @@ namespace AppexApi {
 
             // Custom route. Should be added before the Default one
             routes.MapRoute(
+                name: "Moni",
+                url: "monica",
+                defaults: new { controller = "Notes", action = "DisplayContent", filename = "monica", style = UrlParameter.Optional }
+            );
+
+            // Custom route. Should be added before the Default one
+            routes.MapRoute(
                 name: "Todos",
                 url: "todos",
                 defaults: new { controller = "Notes", action = "DisplayContent", filename = "todos", style = UrlParameter.Optional }
