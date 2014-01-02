@@ -96,7 +96,8 @@ sup {
       width: 80%;
       margin:0 auto;
       /*font-size: 16px;*/
-      background-color: #eee;
+      background-color: rgb(36, 36, 36);
+      color: rgb(232, 243, 246);
    }
 }
 
