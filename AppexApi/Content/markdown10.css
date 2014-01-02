@@ -74,12 +74,34 @@ sup {
 * {
      -webkit-print-color-adjust: exact;
 }
-@media screen and (min-width: 914px) {
+
+@media screen and (min-width: 0px) and (max-width: 400px) { /* 4-inch smartphone (iPhone, etc.) */
+   body {
+      margin:0 auto;
+   }
+}
+
+@media screen and (min-width: 401px) and (max-width: 767px) { /* 7-inch tablet (Nexus 7, etc) */
+   body {
+      width: 80%;
+      margin:0 auto;
+   }
+}
+
+@media screen and (min-width: 768px) and (max-width: 913px) {  /* iPad (no retina) */
+   body {
+      width: 80%;
+      margin:0 auto;
+   }
+}
+
+@media screen and (min-width: 914px) {  /* High resolution */
    body {
       width: 854px;
       margin:0 auto;
    }
 }
+
 @media print {
      table, pre {
           page-break-inside: avoid;
