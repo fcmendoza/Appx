@@ -76,31 +76,36 @@ sup {
 }
 
 
-
-@media screen and (min-width: 681px) { /* como minimo debe ser de 681 pixeles para que le aplique este estilo */
+@media screen and (min-width: 0px) and (max-width: 400px) { /* 4-inch smartphone (iPhone, etc.) */
    body {
-      width: 854px;
       margin:0 auto;
-      /*background-color: blue;*/
+      background-color: #FFF6CA;
    }
 }
 
-@media screen and (max-width: 680px) { /* hasta un maximo de 680 va a tener este estilo */
+@media screen and (min-width: 401px) and (max-width: 767px) { /* 7-inch tablet (Nexus 7, etc) */
    body {
       width: 80%;
       margin:0 auto;
-      /*background-color: green;*/
+      background-color: rgb(185, 209, 185);
    }
 }
 
-@media screen and (max-width: 400px) { /* hasta un maximo de 400 va a tener este estilo */
+@media screen and (min-width: 768px) and (max-width: 913px) {  /* iPad (no retina) */
    body {
-      width: 100%;
+      width: 80%;
       margin:0 auto;
-      /*background-color: yellow;*/
+      /*font-size: 16px;*/
+      background-color: #eee;
    }
 }
 
+@media screen and (min-width: 914px) {  /* High resolution */
+   body {
+      width: 854px;
+      margin:0 auto;
+   }
+}
 
 
 @media print {
