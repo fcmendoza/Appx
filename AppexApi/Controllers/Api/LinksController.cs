@@ -4,11 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using OAuthProtocol;
+using Dropbox.Api;
 
 namespace AppexApi.Controllers.Api
 {
     public class LinksController : ApiController
     {
+        public LinksController() {
+            _consumerKey    = System.Configuration.ConfigurationManager.AppSettings["AppKey"];
+            _consumerSecret = System.Configuration.ConfigurationManager.AppSettings["AppSecret"];
+            _oauthToken     = System.Configuration.ConfigurationManager.AppSettings["OAuthToken"];
+        }
+
         public IEnumerable<Link> Get() {
             return GetLinks();
         }
@@ -59,6 +67,17 @@ namespace AppexApi.Controllers.Api
             var html = client.DownloadString(url);
             return html;
         }
+
+        public string GetTextFromFile(string filename) {
+            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
+            var api = new DropboxApi(_consumerKey, _consumerSecret, accessToken);
+            var file = api.DownloadFile("dropbox", String.Format("Books/{0}", filename));
+            return file.Text;
+        }
+
+        private string _consumerKey;
+        private string _consumerSecret;
+        private string _oauthToken;
 
         /*
             TODO: this private methods must be in a repository that connects to the data source.

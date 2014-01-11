@@ -267,6 +267,10 @@
     <Content Include="Views\Links\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DropboxApi\DropboxApi.csproj">
+      <Project>{3E87FECE-47A8-4062-A7E5-F11B625837A6}</Project>
+      <Name>DropboxApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MarkdownSharp\MarkdownSharp.csproj">
       <Project>{37619116-CCE8-465A-8B1F-081CA53364BB}</Project>
       <Name>MarkdownSharp</Name>

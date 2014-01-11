@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace AppexApi.Controllers
 {
@@ -13,11 +14,11 @@ namespace AppexApi.Controllers
         }
 
         public ActionResult DisplayContent(string filename, string style) {
-            string htmlText = new Api.LinksController().GetHttmlFromMarkdown(url: String.Format("https://dl.dropboxusercontent.com/u/26506865/{0}.txt", filename));
+            string text = new Api.LinksController().GetTextFromFile(String.Format("{0}.txt", filename));
 
             ViewBag.Style = style;
             ViewBag.Title = filename;
-            return View("Content", new MarkdownViewModel { Body = htmlText });
+            return View("Content", new MarkdownViewModel { Body = text });
         }
     }
 }

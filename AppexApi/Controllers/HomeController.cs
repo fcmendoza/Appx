@@ -15,11 +15,11 @@ namespace AppexApi.Controllers {
                 string filename = ConfigurationManager.AppSettings[hostname] ?? null;
 
                 if (filename != null) {
-                    string htmlText = new Api.LinksController().GetHttmlFromMarkdown(url: String.Format("https://dl.dropboxusercontent.com/u/26506865/{0}.txt", filename));
+                    string text = new Api.LinksController().GetTextFromFile(String.Format("{0}.txt", filename));
 
                     ViewBag.Style = style;
                     ViewBag.Title = filename;
-                    return View("../Notes/Content", new MarkdownViewModel { Body = htmlText });
+                    return View("../Notes/Content", new MarkdownViewModel { Body = text });
                 }
             }
 
