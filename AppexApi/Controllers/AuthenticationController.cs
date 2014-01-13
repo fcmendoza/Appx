@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AppexApi.Controllers
 {
@@ -25,6 +27,17 @@ namespace AppexApi.Controllers
                 };
                 throw new HttpResponseException(response);
             }
+        }
+
+        public bool ValidatePassword(string password) {
+            var hashKey = System.Configuration.ConfigurationManager.AppSettings["HashKey"];
+            return GetHashKey(password) == hashKey.ToString();
+        }
+
+        private string GetHashKey(string password) {
+            HashAlgorithm algorithm = SHA1.Create();
+            var hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(password ?? String.Empty));
+            return BitConverter.ToString(hash).Replace("-", String.Empty).ToLower();
         }
 
         [HttpGet]
