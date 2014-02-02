@@ -25,5 +25,27 @@ namespace AppexApi.Controllers {
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Login() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string password, string returnUrl) {
+            bool authorized = _auth.ValidatePassword(password);
+
+            if (authorized) {
+                System.Web.Security.FormsAuthentication.SetAuthCookie(userName: "guest", createPersistentCookie: false);
+                return Redirect(returnUrl);
+            }
+            else {
+                ViewBag.ErrorMessage = "Invalid credentials. Please try again.";
+            }
+
+            return View();
+        }
+
+        private AuthenticationController _auth = new AuthenticationController();
     }
 }

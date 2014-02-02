@@ -46,7 +46,6 @@ namespace Dropbox.Api {
             return ParseJson<File>(json);
         }
 
-
         public FileSystemInfo CreateFolder(string root, string path) {
             var uri = new Uri(new Uri(DropboxRestApi.BaseUri), String.Format("fileops/create_folder?root={0}&path={1}",
                 root, UpperCaseUrlEncode(path)));
@@ -56,9 +55,6 @@ namespace Dropbox.Api {
         }
 
         public FileSystemInfo DownloadFile(string root, string path) {
-
-            var contentUri = new Uri(String.Format(DropboxRestApi.ApiContentServer, root, UpperCaseUrlEncode(path)));
-
             var uri = new Uri(String.Format("https://api-content.dropbox.com/1/files/{0}/{1}", root, path));
 
             var oauth = new OAuth();

@@ -16,24 +16,23 @@ namespace AppexApi.Controllers
             return null;
         }
 
-        public ActionResult DisplayContent(string filename, string password, string style) {
-
-            var restrictedFiles = ConfigurationManager.AppSettings["RestrictedFiles"].ToLower().Split(',').ToList().Select(f => f.Trim());
-
-            bool authorized = restrictedFiles.Contains(filename.Trim()) ? _auth.ValidatePassword(password) : true;
-
-            if (authorized) {
-                string text = new Api.LinksController().GetTextFromFile(String.Format("{0}.txt", filename));
-
-                ViewBag.Style = style;
-                ViewBag.Title = filename;
-                return View("Content", new MarkdownViewModel { Body = text });
-            }
-            else {
-                return View("../Shared/Unauthorized");
-            }
+        public ActionResult DisplayContent(string filename, string style) {
+            string directory = "Books";
+            return DisplayTheContent(directory: directory, filename: filename, style: style);
         }
 
-        private AuthenticationController _auth = new AuthenticationController();
+        [System.Web.Mvc.Authorize]
+        public ActionResult Private(string filename, string style) {
+            string directory = @"Books/private";
+            return DisplayTheContent(directory: directory, filename: filename, style: style);
+        }
+
+        private ActionResult DisplayTheContent(string directory, string filename, string style) {
+            string text = new Api.LinksController().GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename));
+
+            ViewBag.Style = style;
+            ViewBag.Title = filename;
+            return View("Content", new MarkdownViewModel { Body = text });
+        }
     }
 }

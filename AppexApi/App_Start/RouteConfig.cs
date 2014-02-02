@@ -12,6 +12,12 @@ namespace AppexApi {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // Custom routes should be added before the Default one.
+            routes.MapRoute(
+                 name: "PrivateNotes",
+                 url: "notes/private/{filename}",
+                 defaults: new { controller = "Notes", action = "Private", style = UrlParameter.Optional }
+            );
+
              routes.MapRoute(
                  name: "Notes",
                  url: "notes/{filename}",

@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_MarkdownLayout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm()) { 
+    <div style="width:240px;">
+        @Html.Password("password")
+        <input type="submit" value="Submit" style="padding:2px;" />
+        <span id="error-message" style="color:red;">@ViewBag.ErrorMessage</span>
+    </div>
+}
