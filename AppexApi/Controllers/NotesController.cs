@@ -27,6 +27,12 @@ namespace AppexApi.Controllers
             return DisplayTheContent(directory: directory, filename: filename, style: style);
         }
 
+        [System.Web.Mvc.Authorize]
+        public ActionResult Booknotes(string filename, string style) {
+            string directory = @"BookNotes";
+            return DisplayTheContent(directory: directory, filename: filename, style: style);
+        }
+
         private ActionResult DisplayTheContent(string directory, string filename, string style) {
             string text = new Api.LinksController().GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename));
 
