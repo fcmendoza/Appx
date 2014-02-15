@@ -2,6 +2,10 @@
     Layout = "~/Views/Shared/_MarkdownLayout.cshtml";
 }
 
+@{
+    ViewBag.Title = "Login";
+}
+
 <h2>Login</h2>
 
 @using (Html.BeginForm()) { 
@@ -11,3 +15,12 @@
         <span id="error-message" style="color:red;">@ViewBag.ErrorMessage</span>
     </div>
 }
+
+@Scripts.Render("~/bundles/jquery")
+
+<script type="text/javascript">
+    $(function () {
+        $('#password').focus();
+    });
+</script>
+
