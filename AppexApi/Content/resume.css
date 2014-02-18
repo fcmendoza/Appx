@@ -1,0 +1,40 @@
+﻿body
+{
+    background-image:url("images/tree_bark.png");
+    font-family: "Lucida Console", Monaco, monospace;
+}
+
+#main-content {
+
+}
+#name {
+    margin:0 auto;
+    width:80%;
+    text-align: right;
+    font-size: 35px;
+    padding-top: 40px;
+}
+#detailed-content {
+    padding: 0px;
+    margin:0 auto;
+    width:80%;
+    height:1600px;
+    background-image:url("images/lined_paper.png");
+    padding-bottom: 5px;
+}
+.section {
+    padding:0px;
+    margin:0px;
+    width:80px;
+    height:170px;
+    background-color: #FA8258;
+    float: left;
+    position: relative;
+}
+.detail 
+{
+    padding:0px;
+    margin:0px;
+    width:90%;
+    height:170px;
+}
