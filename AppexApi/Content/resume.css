@@ -2,18 +2,52 @@
 {
     background-image:url("images/tree_bark.png");
     font-family: "Lucida Console", Monaco, monospace;
+    
 }
 
 #main-content {
 
 }
+p, ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 15px 20px 20px 20px;
+}
 #name {
     margin:0 auto;
     width:80%;
+    height: 155px;
     text-align: right;
     font-size: 35px;
     padding-top: 40px;
+    padding-bottom: 0px;
+    /*background-color: #E94E77;*//*F1EDD2 48BF9F E94E77 FA991C*/
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+
+    background-image: url("images/banner2.png");
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
+
+.main-menu {
+
+    padding: 0px;
+    
+    padding-top: 10px;
+    margin:0 auto;
+    width:80%;
+    height:40px;
+    background-color: #25B5BA; /*#25B5BA#48BF9F*/
+    color: white;
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-image:url("images/noisy.png");
+}
+
+
 #detailed-content {
     padding: 0px;
     margin:0 auto;
@@ -31,10 +65,60 @@
     float: left;
     position: relative;
 }
+
 .detail 
 {
     padding:0px;
     margin:0px;
     width:90%;
     height:170px;
+}
+.position-section{
+    background-color: #08088A;
+    padding:10px 0px 0px 0px;
+    margin:0px;
+    width:45%;
+    height:30px;
+    float: left;
+color: white;
+
+}
+
+.employeer-section{
+    background-color: #04B45F;
+    padding:10px 0px 0px 0px;
+    margin:0px;
+    width:46%;
+    height: 30px;
+    height:30px;
+    float: right;
+    color: white;
+}
+
+.date-section{
+    background-color: black;
+    padding:0px  0px 0px 0px;
+    margin:0px;
+    width:90%;
+    height:30px;
+    float: left;
+}
+
+.project-section{
+    background-color: yellow;
+    padding:0px;
+    margin:0px;
+    width:90%;
+    height:170px;
+    float: left;
+}
+
+.tools-section{ 
+    background-color: #08088A;
+    padding:0px;
+    margin:0px;
+    width:90%;
+    height:170px;
+    float: left;
+
 }

@@ -141,7 +141,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\banner2.png" />
+    <Content Include="Content\images\light_grey.png" />
     <Content Include="Content\images\lined_paper.png" />
+    <Content Include="Content\images\noisy.png" />
+    <Content Include="Content\images\notebook.png" />
     <Content Include="Content\images\tree_bark.png" />
     <Content Include="Content\media.css" />
     <Content Include="Content\github.css" />
