@@ -7,6 +7,7 @@ using System.Net;
 using System.Configuration;
 using System.Net.Http;
 using System.Web.Http;
+using System.Dynamic;
 
 namespace AppexApi.Controllers
 {
@@ -15,13 +16,16 @@ namespace AppexApi.Controllers
         public ActionResult Index() {
             var dropbox = new Api.LinksController().GetDropBoxApiInstance();
             var files = dropbox.GetFiles(root: "dropbox", path: "Books");
+
             var thefiles = files.Contents
-                .Where(x=> x.Path.Contains(".txt"))
-                .Select(x => x.Path.ToLower().Replace("/books/", String.Empty));
+                .Where(x => x.Path.Contains(".txt"))
+                .OrderByDescending(x => x.Modified)
+                .Select(x => new NoteInfoVM {
+                    Filename = x.Path.ToLower().Replace("/books/", String.Empty).Replace(".txt", String.Empty), 
+                    ModifiedOn = x.Modified 
+                });
 
-            var textfiles = thefiles.Select(x => x.Replace(".txt", String.Empty)).ToList();
-
-            return View(textfiles);
+            return View(thefiles);
         }
 
         public ActionResult DisplayContent(string filename, string style) {
@@ -48,5 +52,10 @@ namespace AppexApi.Controllers
             ViewBag.Title = filename;
             return View("Content", new MarkdownViewModel { Body = text });
         }
+    }
+
+    public class NoteInfoVM {
+        public string Filename { get; set; }
+        public DateTime ModifiedOn { get; set; }
     }
 }

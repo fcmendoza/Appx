@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_MarkdownLayout.cshtml";
 }
 
-@model dynamic
+@model IEnumerable<AppexApi.Controllers.NoteInfoVM>
 
 <h2>Content List</h2>
 
@@ -10,6 +10,8 @@
 
 <ul>
     @foreach (var item in Model) { 
-        <li><a href="@String.Format("{0}/{1}", Request.Path, item)">@item</a></li>
+        <li><a href="@String.Format("{0}/{1}", Request.Path, item.Filename)">@item.Filename</a>
+            <span style="font-size:80%">(Updated on @String.Format("{0:MMMM dd, yyyy}", item.ModifiedOn))</span>
+        </li>
     }
 </ul>
