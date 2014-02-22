@@ -13,7 +13,15 @@ namespace AppexApi.Controllers
     public class NotesController : Controller
     {
         public ActionResult Index() {
-            return null;
+            var dropbox = new Api.LinksController().GetDropBoxApiInstance();
+            var files = dropbox.GetFiles(root: "dropbox", path: "Books");
+            var thefiles = files.Contents
+                .Where(x=> x.Path.Contains(".txt"))
+                .Select(x => x.Path.ToLower().Replace("/books/", String.Empty));
+
+            var textfiles = thefiles.Select(x => x.Replace(".txt", String.Empty)).ToList();
+
+            return View(textfiles);
         }
 
         public ActionResult DisplayContent(string filename, string style) {

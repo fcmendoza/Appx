@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_MarkdownLayout.cshtml";
+}
+
+@model dynamic
+
+<h2>Content List</h2>
+
+<p>Notes so far:</p>
+
+<ul>
+    @foreach (var item in Model) { 
+        <li><a href="@String.Format("{0}/{1}", Request.Path, item)">@item</a></li>
+    }
+</ul>

@@ -75,6 +75,11 @@ namespace AppexApi.Controllers.Api
             return file.Text;
         }
 
+        public DropboxApi GetDropBoxApiInstance() {
+            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
+            return new DropboxApi(_consumerKey, _consumerSecret, accessToken);
+        }
+
         private string _consumerKey;
         private string _consumerSecret;
         private string _oauthToken;
