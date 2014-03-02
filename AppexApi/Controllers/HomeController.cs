@@ -15,7 +15,7 @@ namespace AppexApi.Controllers {
                 string filename = ConfigurationManager.AppSettings[hostname] ?? null;
 
                 if (filename != null) {
-                    string text = new Api.LinksController().GetTextFromFile(String.Format("{0}.txt", filename));
+                    string text = _shared.GetTextFromFile(String.Format("{0}.txt", filename));
 
                     ViewBag.Style = style;
                     ViewBag.Title = filename;
@@ -47,5 +47,6 @@ namespace AppexApi.Controllers {
         }
 
         private AuthenticationController _auth = new AuthenticationController();
+        private Shared _shared = new Shared();
     }
 }

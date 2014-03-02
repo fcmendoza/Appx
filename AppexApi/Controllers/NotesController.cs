@@ -43,7 +43,7 @@ namespace AppexApi.Controllers
         }
 
         private ActionResult DisplayTheContent(string directory, string filename, string style) {
-            string text = new Api.LinksController().GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename));
+            string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename));
 
             ViewBag.Style = style;
             ViewBag.Title = filename;
@@ -51,7 +51,7 @@ namespace AppexApi.Controllers
         }
 
         private IEnumerable<NoteInfoVM> GetFileInfo(string directory) {
-            var dropbox = new Api.LinksController().GetDropBoxApiInstance();
+            var dropbox = _shared.GetDropBoxApiInstance();
             var files = dropbox.GetFiles(root: "dropbox", path: directory);
 
             var thefiles = files.Contents
@@ -64,6 +64,8 @@ namespace AppexApi.Controllers
 
             return thefiles;
         }
+
+        private Shared _shared = new Shared();
     }
 
     public class NoteInfoVM {

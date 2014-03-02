@@ -2,9 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Dropbox.Api;
+using OAuthProtocol;
 
 namespace AppexApi.Controllers {
     public class Shared {
+        public Shared() {
+            _consumerKey    = System.Configuration.ConfigurationManager.AppSettings["AppKey"];
+            _consumerSecret = System.Configuration.ConfigurationManager.AppSettings["AppSecret"];
+            _oauthToken     = System.Configuration.ConfigurationManager.AppSettings["OAuthToken"];
+        }
+
+        public DropboxApi GetDropBoxApiInstance() {
+            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
+            return new DropboxApi(_consumerKey, _consumerSecret, accessToken);
+        }
+
+        public string GetTextFromFile(string filename, string directory = "Books") {
+            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
+            var api = new DropboxApi(_consumerKey, _consumerSecret, accessToken);
+            var file = api.DownloadFile(root: "dropbox", path: String.Format("{0}/{1}", directory, filename));
+            return file.Text;
+        }
+
+        private string _consumerKey;
+        private string _consumerSecret;
+        private string _oauthToken;
     }
 
     public static class TimeZoneHelper {
