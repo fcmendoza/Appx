@@ -134,6 +134,7 @@
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\PocketController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
+    <Compile Include="Controllers\Shared.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

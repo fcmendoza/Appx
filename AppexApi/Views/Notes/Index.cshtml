@@ -11,7 +11,7 @@
 <ul>
     @foreach (var item in Model) { 
         <li><a href="@String.Format("{0}/{1}", Request.Path, item.Filename)">@item.Filename</a>
-            <span style="font-size:80%">(Updated on @String.Format("{0:MMMM dd, yyyy}", item.ModifiedOn))</span>
+            <span style="font-size:80%">(Updated on @String.Format("{0:MMMM dd, yyyy  HH:mm}", item.ModifiedOn))</span>
         </li>
     }
 </ul>
