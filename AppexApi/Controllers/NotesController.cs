@@ -14,18 +14,8 @@ namespace AppexApi.Controllers
     public class NotesController : Controller
     {
         public ActionResult Index() {
-            var dropbox = new Api.LinksController().GetDropBoxApiInstance();
-            var files = dropbox.GetFiles(root: "dropbox", path: "Books");
-
-            var thefiles = files.Contents
-                .Where(x => x.Path.Contains(".txt"))
-                .OrderByDescending(x => x.Modified)
-                .Select(x => new NoteInfoVM {
-                    Filename = x.Path.ToLower().Replace("/books/", String.Empty).Replace(".txt", String.Empty), 
-                    ModifiedOn = x.Modified 
-                });
-
-            return View(thefiles);
+            var files = GetFileInfo(directory: "Books");
+            return View(files);
         }
 
         public ActionResult DisplayContent(string filename, string style) {
@@ -42,7 +32,14 @@ namespace AppexApi.Controllers
         [System.Web.Mvc.Authorize]
         public ActionResult Booknotes(string filename, string style) {
             string directory = @"BookNotes";
-            return DisplayTheContent(directory: directory, filename: filename, style: style);
+
+            if (String.IsNullOrWhiteSpace(filename)) {
+                var files = GetFileInfo(directory: directory);
+                return View("Index", files);
+            }
+            else {
+                return DisplayTheContent(directory: directory, filename: filename, style: style);
+            }
         }
 
         private ActionResult DisplayTheContent(string directory, string filename, string style) {
@@ -51,6 +48,21 @@ namespace AppexApi.Controllers
             ViewBag.Style = style;
             ViewBag.Title = filename;
             return View("Content", new MarkdownViewModel { Body = text });
+        }
+
+        private IEnumerable<NoteInfoVM> GetFileInfo(string directory) {
+            var dropbox = new Api.LinksController().GetDropBoxApiInstance();
+            var files = dropbox.GetFiles(root: "dropbox", path: directory);
+
+            var thefiles = files.Contents
+                .Where(x => x.Path.Contains(".txt"))
+                .OrderByDescending(x => x.Modified)
+                .Select(x => new NoteInfoVM {
+                    Filename = x.Path.ToLower().Replace("/" + directory.ToLower() + "/", String.Empty).Replace(".txt", String.Empty),
+                    ModifiedOn = x.Modified
+                });
+
+            return thefiles;
         }
     }
 

@@ -71,7 +71,7 @@ namespace AppexApi.Controllers.Api
         public string GetTextFromFile(string filename, string directory = "Books") {
             var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
             var api = new DropboxApi(_consumerKey, _consumerSecret, accessToken);
-            var file = api.DownloadFile("dropbox", String.Format("{0}/{1}", directory, filename));
+            var file = api.DownloadFile(root: "dropbox", path: String.Format("{0}/{1}", directory, filename));
             return file.Text;
         }
 
