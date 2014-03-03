@@ -156,7 +156,7 @@ namespace Dropbox.Api {
         public IEnumerable<File> Contents { get; internal set; }
 
         [JsonProperty(PropertyName = "modified")]
-        public DateTime Modified { get; internal set; }
+        public DateTimeOffset Modified { get; internal set; }
     }
 
     [JsonObject(MemberSerialization.OptIn)]

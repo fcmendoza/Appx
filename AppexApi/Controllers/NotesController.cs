@@ -59,7 +59,7 @@ namespace AppexApi.Controllers
                 .OrderByDescending(x => x.Modified)
                 .Select(x => new NoteInfoVM {
                     Filename = x.Path.ToLower().Replace("/" + directory.ToLower() + "/", String.Empty).Replace(".txt", String.Empty),
-                    ModifiedOn = x.Modified
+                    ModifiedOn = TimeZoneHelper.UtcToPacific(x.Modified.UtcDateTime)
                 });
 
             return thefiles;
