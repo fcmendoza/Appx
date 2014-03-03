@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using Dropbox.Api;
@@ -19,6 +20,26 @@ namespace AppexApi.Controllers {
         }
 
         public string GetTextFromFile(string filename, string directory = "Books") {
+            string fileContent = GetFileContentFromCache(filename, directory);
+            return fileContent != null ? fileContent : GetTextContent(filename: filename, directory: directory);
+        }
+
+        private string GetFileContentFromCache(string filename, string directory) {
+            string key = String.Format("{0}_{1}", directory, filename);
+            
+            int timeout = int.TryParse(ConfigurationManager.AppSettings["NotesCacheTimeoutInSeconds"], out timeout) ? timeout : 15;
+
+            var content = HttpRuntime
+                .Cache.GetOrStore<String> (
+                    key:        key,
+                    expiration: new TimeSpan(0, 0, timeout),
+                    generator:  () => GetTextContent(filename: filename, directory: directory)
+                );
+
+            return content;
+        }
+
+        private string GetTextContent(string filename, string directory) {
             var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
             var api = new DropboxApi(_consumerKey, _consumerSecret, accessToken);
             var file = api.DownloadFile(root: "dropbox", path: String.Format("{0}/{1}", directory, filename));
@@ -28,6 +49,25 @@ namespace AppexApi.Controllers {
         private string _consumerKey;
         private string _consumerSecret;
         private string _oauthToken;
+    }
+
+    public static class CacheExtensions {
+        // From http://stackoverflow.com/questions/445050/how-can-i-cache-objects-in-asp-net-mvc
+        public static T GetOrStore<T>(this System.Web.Caching.Cache cache, string key, TimeSpan expiration, Func<T> generator) {
+            var result = cache.Get(key);
+
+            if (result == null) {
+                result = generator();
+                cache.Insert(
+                    key: key, 
+                    value: result, 
+                    dependencies: null, 
+                    absoluteExpiration: System.Web.Caching.Cache.NoAbsoluteExpiration, 
+                    slidingExpiration: expiration
+                );
+            }
+            return (T)result;
+        }
     }
 
     public static class TimeZoneHelper {
