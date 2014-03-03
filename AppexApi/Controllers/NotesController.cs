@@ -47,6 +47,14 @@ namespace AppexApi.Controllers
 
             ViewBag.Style = style;
             ViewBag.Title = filename;
+            ViewBag.Hightlight = null;
+
+            if (Request.QueryString.AllKeys.Length > 0) {
+                var keys = Request.QueryString.AllKeys.ToList();
+                var exists = keys.Where(k => k.ToLower() == "highlight" || k.ToLower() == "syntax").Any();
+                ViewBag.Hightlight = exists ? "highlight" : null;
+            }
+            
             return View("Content", new MarkdownViewModel { Body = text });
         }
 
