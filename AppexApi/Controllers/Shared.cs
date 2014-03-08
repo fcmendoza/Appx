@@ -19,8 +19,8 @@ namespace AppexApi.Controllers {
             return new DropboxApi(_consumerKey, _consumerSecret, accessToken);
         }
 
-        public string GetTextFromFile(string filename, string directory = "Books") {
-            string fileContent = GetFileContentFromCache(filename, directory);
+        public string GetTextFromFile(string filename, string directory = "Books", bool nocache = false) {
+            string fileContent = nocache ? null : GetFileContentFromCache(filename, directory);
             return fileContent != null ? fileContent : GetTextContent(filename: filename, directory: directory);
         }
 

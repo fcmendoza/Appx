@@ -43,17 +43,21 @@ namespace AppexApi.Controllers
         }
 
         private ActionResult DisplayTheContent(string directory, string filename, string style) {
-            string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename));
-
             ViewBag.Style = style;
             ViewBag.Title = filename;
             ViewBag.Hightlight = null;
+
+            bool nocache = false;
 
             if (Request.QueryString.AllKeys.Length > 0) {
                 var keys = Request.QueryString.AllKeys.ToList();
                 var exists = keys.Where(k => k.ToLower() == "highlight" || k.ToLower() == "syntax").Any();
                 ViewBag.Hightlight = exists ? "highlight" : null;
+
+                nocache = keys.Where(k => k.ToLower() == "nocache" || k.ToLower() == "no-cache").Any();
             }
+
+            string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename), nocache: nocache);
             
             return View("Content", new MarkdownViewModel { Body = text });
         }
