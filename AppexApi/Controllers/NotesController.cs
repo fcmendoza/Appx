@@ -57,8 +57,8 @@ namespace AppexApi.Controllers
                 nocache = keys.Where(k => k.ToLower() == "nocache" || k.ToLower() == "no-cache").Any();
             }
 
-            string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename), nocache: nocache);
-            
+            string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename), cacheTimeoutInSeconds: nocache ? 0 : -1);
+
             return View("Content", new MarkdownViewModel { Body = text });
         }
 

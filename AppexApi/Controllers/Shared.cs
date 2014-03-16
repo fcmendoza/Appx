@@ -19,15 +19,24 @@ namespace AppexApi.Controllers {
             return new DropboxApi(_consumerKey, _consumerSecret, accessToken);
         }
 
-        public string GetTextFromFile(string filename, string directory = "Books", bool nocache = false) {
-            string fileContent = nocache ? null : GetFileContentFromCache(filename, directory);
-            return fileContent != null ? fileContent : GetTextContent(filename: filename, directory: directory);
+        /// <summary>
+        /// If the timeout is not provided or less than zero, the result will be cached by default. Set the timeout to zero to not get the result from cache.
+        /// When greater than zero the result will be cached for the time specified.
+        /// </summary>
+        public string GetTextFromFile(string filename, string directory = "Books", int cacheTimeoutInSeconds = -1) {
+
+            int timeout = int.TryParse(ConfigurationManager.AppSettings["NotesCacheTimeoutInSeconds"], out timeout) ? timeout : 15; // default timeout
+            timeout = cacheTimeoutInSeconds >= 0 ? cacheTimeoutInSeconds : timeout;
+
+            return timeout > 0 
+                ? GetFileContentFromCache(filename, directory, timeout) 
+                : GetTextContent(filename: filename, directory: directory);
         }
 
-        private string GetFileContentFromCache(string filename, string directory) {
+        private string GetFileContentFromCache(string filename, string directory, int cacheTimeoutInSeconds) {
             string key = String.Format("{0}_{1}", directory, filename);
-            
-            int timeout = int.TryParse(ConfigurationManager.AppSettings["NotesCacheTimeoutInSeconds"], out timeout) ? timeout : 15;
+
+            int timeout = cacheTimeoutInSeconds;
 
             var content = HttpRuntime
                 .Cache.GetOrStore<String> (
