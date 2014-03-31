@@ -77,7 +77,13 @@ namespace Dropbox.Api {
                 } while (bytesRead > 0);
 
                 file.Data = memoryStream.ToArray();
-                file.Text = System.Text.Encoding.Default.GetString(file.Data);
+
+                if (response.Headers["Content-Type"] != null && response.Headers["Content-Type"].ToUpper().Contains("UTF-8")) {
+                    file.Text = System.Text.Encoding.UTF8.GetString(file.Data);
+                }
+                else {
+                    file.Text = System.Text.Encoding.Default.GetString(file.Data);
+                }
             }
 
             return file;
