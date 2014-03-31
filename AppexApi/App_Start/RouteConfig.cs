@@ -14,6 +14,18 @@ namespace AppexApi {
             // Custom routes should be added before the Default one.
 
             routes.MapRoute(
+                 name: "BooknotesWisdomIndex",
+                 url: "booknotes/wisdomf",
+                 defaults: new { controller = "Notes", action = "Booknotes", directory = "booknotes/wisdomf", style = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                 name: "BooknotesWisdom",
+                 url: "booknotes/wisdomf/{filename}",
+                 defaults: new { controller = "Notes", action = "Booknotes", directory = "booknotes/wisdomf", style = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                  name: "BooknotesIndex",
                  url: "booknotes/",
                  defaults: new { controller = "Notes", action = "Booknotes", style = UrlParameter.Optional }

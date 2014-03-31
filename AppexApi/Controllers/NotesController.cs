@@ -30,9 +30,7 @@ namespace AppexApi.Controllers
         }
 
         [System.Web.Mvc.Authorize]
-        public ActionResult Booknotes(string filename, string style) {
-            string directory = @"BookNotes";
-
+        public ActionResult Booknotes(string filename, string style, string directory = "BookNotes") {
             if (String.IsNullOrWhiteSpace(filename)) {
                 var files = GetFileInfo(directory: directory);
                 return View("Index", files);
