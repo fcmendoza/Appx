@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Kiwi.Markdown;
 using MarkdownSharp;
 
 namespace AppexApi.Controllers
@@ -40,6 +41,24 @@ namespace AppexApi.Controllers
 
             // Wrap the html in an MvcHtmlString otherwise it'll be HtmlEncoded and displayed to the user as HTML :(
             return new MvcHtmlString(html);
+        }
+
+        public static IHtmlString MarkdownColorized(this HtmlHelper helper, string text) {
+            string html = KiwiMarkdownService.Instance.ToHtml(text);
+            return new MvcHtmlString(html);
+        }
+    }
+
+    public class KiwiMarkdownService {
+        private static readonly Lazy<IMarkdownService> Singleton;
+
+        public static IMarkdownService Instance {
+            get { return Singleton.Value; }
+        }
+
+        static KiwiMarkdownService() {
+            Singleton = new Lazy<IMarkdownService>(
+                () => new MarkdownService(), true);
         }
     }
 }

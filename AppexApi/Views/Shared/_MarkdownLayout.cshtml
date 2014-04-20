@@ -16,16 +16,5 @@
 </head>
 <body>
     @RenderBody()
-    @if (!String.IsNullOrWhiteSpace(@ViewBag.Hightlight)) {
-        <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">
-        <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
-        <script>
-            if (typeof hljs !== 'undefined' && hljs) {
-                hljs.initHighlightingOnLoad();
-            } else {
-                console.log("Could not find 'highlight js' object.");
-            }
-        </script>
-    }
 </body>
 </html>

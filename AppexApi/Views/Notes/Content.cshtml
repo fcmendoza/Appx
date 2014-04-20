@@ -5,4 +5,9 @@
 @using AppexApi.Controllers
 @model AppexApi.Controllers.MarkdownViewModel
 
-@Html.Markdown(Model.Body)
+@if (!String.IsNullOrWhiteSpace(@ViewBag.Hightlight)) {
+    @Html.MarkdownColorized(Model.Body)
+}
+else { 
+    @Html.Markdown(Model.Body)
+}

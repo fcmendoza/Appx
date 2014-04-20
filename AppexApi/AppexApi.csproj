@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -280,9 +284,9 @@
       <Project>{3E87FECE-47A8-4062-A7E5-F11B625837A6}</Project>
       <Name>DropboxApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MarkdownSharp\MarkdownSharp.csproj">
-      <Project>{37619116-CCE8-465A-8B1F-081CA53364BB}</Project>
-      <Name>MarkdownSharp</Name>
+    <ProjectReference Include="..\Kiwi.Markdown\Kiwi.Markdown.csproj">
+      <Project>{36c2c8f1-9b44-48c9-a281-e68e78ae2c91}</Project>
+      <Name>Kiwi.Markdown</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

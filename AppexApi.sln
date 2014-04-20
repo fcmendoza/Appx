@@ -1,11 +1,13 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppexApi", "AppexApi\AppexApi.csproj", "{66F95341-942A-4DCF-B04B-B231CA91DE1D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkdownSharp", "MarkdownSharp\MarkdownSharp.csproj", "{37619116-CCE8-465A-8B1F-081CA53364BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropboxApi", "DropboxApi\DropboxApi.csproj", "{3E87FECE-47A8-4062-A7E5-F11B625837A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kiwi.Markdown", "Kiwi.Markdown\Kiwi.Markdown.csproj", "{36C2C8F1-9B44-48C9-A281-E68E78AE2C91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{3E87FECE-47A8-4062-A7E5-F11B625837A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E87FECE-47A8-4062-A7E5-F11B625837A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E87FECE-47A8-4062-A7E5-F11B625837A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C2C8F1-9B44-48C9-A281-E68E78AE2C91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C2C8F1-9B44-48C9-A281-E68E78AE2C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C2C8F1-9B44-48C9-A281-E68E78AE2C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C2C8F1-9B44-48C9-A281-E68E78AE2C91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
