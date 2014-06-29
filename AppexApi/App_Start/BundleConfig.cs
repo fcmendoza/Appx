@@ -19,6 +19,11 @@ namespace AppexApi {
                         "~/Scripts/knockout-2.1.0.js"
             ));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular.js",
+                        "~/Scripts/app.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/framework").Include(
                         "~/Scripts/namespace.js",
                         "~/Scripts/remedial.js"

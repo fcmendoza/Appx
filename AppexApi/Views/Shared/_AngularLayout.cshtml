@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html ng-app="trackin">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @RenderSection("embeddedcss", required: false)
+
+    @Styles.Render("~/Content/markdown")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render("~/bundles/angular")
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

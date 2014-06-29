@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AngularController.cs" />
     <Compile Include="Controllers\Api\LinksController.cs" />
     <Compile Include="Controllers\Api\NotesController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
@@ -217,6 +218,7 @@
     <Content Include="Content\wombat.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -231,6 +233,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\Links\Index.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\namespace.js" />
@@ -306,6 +309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Notes\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Angular\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_AngularLayout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

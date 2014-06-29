@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_AngularLayout.cshtml";
+    ViewBag.Title = "Angular";
+}
+@section embeddedcss {
+    <style type="text/css">
+        div#main label {
+            display: inline-block;
+            width: 80px;
+        }
+        .ng-invalid.ng-dirty {
+            border-color:red;
+        }
+        .ng-valid.ng-dirty {
+            border-color:green;
+        }
+    </style>
+}
+
+<h2>Add transacition</h2>
+
+<div id="main" ng-controller="MoneyController as moneyCtrl">
+    <form name="transactionForm" ng-submit="transactionForm.$valid && moneyCtrl.addTransaction(transactionForm)" novalidate>
+        <p>
+            <label for="txtDescription">Description:</label>
+            <input id="txtDescription" type="text" ng-model="moneyCtrl.transaction.description" required />
+        </p>
+        <p>
+            <label for="txtAmount">Amount:</label>
+            <input id="txtAmount" type="number" ng-model="moneyCtrl.transaction.amount" required />
+        </p>
+        <p>
+            <label for="txtTag">Tag:</label>
+            <input id="txtTag" type="text" ng-model="moneyCtrl.transaction.tag" required />
+        </p>
+
+        <p>transactionForm is {{transactionForm.$valid}}</p>
+
+        <input type="submit" value="Add Transaction" />
+        <button ng-click="transactionForm.$setPristine()">Reset form</button>
+    </form>
+
+    <p>
+        <strong>Description: </strong> {{moneyCtrl.transaction.description}} <br />
+        <strong>Amout: </strong>{{moneyCtrl.transaction.amount | number:2}} <br />
+        <strong>Tags: </strong>{{moneyCtrl.transaction.tag}} <br />
+    </p>
+
+    <div id="transactions" ng-repeat="tran in moneyCtrl.transactions">
+        <h2>{{tran.description}}</h2>
+        <p>Amount ($): {{tran.amount | number:2}}</p>
+        <p>Tags: {{tran.tag}}</p>
+    </div>
+</div>
