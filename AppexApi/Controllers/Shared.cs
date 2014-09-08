@@ -8,15 +8,12 @@ using OAuthProtocol;
 
 namespace AppexApi.Controllers {
     public class Shared {
-        public Shared() {
-            _consumerKey    = System.Configuration.ConfigurationManager.AppSettings["AppKey"];
-            _consumerSecret = System.Configuration.ConfigurationManager.AppSettings["AppSecret"];
-            _oauthToken     = System.Configuration.ConfigurationManager.AppSettings["OAuthToken"];
+        public Shared(IContentRepository repo) {
+            _repo = repo;
         }
 
-        public DropboxApi GetDropBoxApiInstance() {
-            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
-            return new DropboxApi(_consumerKey, _consumerSecret, accessToken);
+        public IEnumerable<FileInfo> GetFiles(string directory) {
+            return _repo.GetFiles(directory);
         }
 
         /// <summary>
@@ -29,8 +26,8 @@ namespace AppexApi.Controllers {
             timeout = cacheTimeoutInSeconds >= 0 ? cacheTimeoutInSeconds : timeout;
 
             return timeout > 0 
-                ? GetFileContentFromCache(filename, directory, timeout) 
-                : GetTextContent(filename: filename, directory: directory);
+                ? GetFileContentFromCache(filename, directory, timeout)
+                : _repo.GetTextContent(filename: filename, directory: directory);
         }
 
         private string GetFileContentFromCache(string filename, string directory, int cacheTimeoutInSeconds) {
@@ -42,22 +39,13 @@ namespace AppexApi.Controllers {
                 .Cache.GetOrStore<String> (
                     key:        key,
                     expiration: new TimeSpan(0, 0, timeout),
-                    generator:  () => GetTextContent(filename: filename, directory: directory)
+                    generator:  () => _repo.GetTextContent(filename: filename, directory: directory)
                 );
 
             return content;
         }
 
-        private string GetTextContent(string filename, string directory) {
-            var accessToken = new OAuthToken(token: _oauthToken.Substring(0, 16), secret: _oauthToken.Substring(18, 15));
-            var api = new DropboxApi(_consumerKey, _consumerSecret, accessToken);
-            var file = api.DownloadFile(root: "dropbox", path: String.Format("{0}/{1}", directory, filename));
-            return file.Text;
-        }
-
-        private string _consumerKey;
-        private string _consumerSecret;
-        private string _oauthToken;
+        IContentRepository _repo;
     }
 
     public static class CacheExtensions {

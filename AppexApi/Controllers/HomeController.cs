@@ -47,6 +47,6 @@ namespace AppexApi.Controllers {
         }
 
         private AuthenticationController _auth = new AuthenticationController();
-        private Shared _shared = new Shared();
+        private Shared _shared = new Shared(new DropboxContentRepository());
     }
 }

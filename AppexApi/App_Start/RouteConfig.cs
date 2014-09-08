@@ -43,6 +43,12 @@ namespace AppexApi {
                  defaults: new { controller = "Notes", action = "Private", style = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                 name: "Local",
+                 url: "local/{filename}",
+                 defaults: new { controller = "Notes", action = "DisplayLocalContent", style = UrlParameter.Optional }
+             );
+
              routes.MapRoute(
                  name: "Notes",
                  url: "notes/{filename}",
@@ -71,6 +77,12 @@ namespace AppexApi {
                 name: "Markdown",
                 url: "markdown",
                 defaults: new { controller = "Notes", action = "DisplayContent", filename="markdown-test", style = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "LocalDir",
+                url: "local",
+                defaults: new { controller = "Notes", action = "Index", isLocal = true, style = UrlParameter.Optional }
             );
 
             // Default route

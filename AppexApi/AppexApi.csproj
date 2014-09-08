@@ -134,6 +134,7 @@
     <Compile Include="Controllers\Api\NotesController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IContentRepository.cs" />
     <Compile Include="Controllers\LinksController.cs" />
     <Compile Include="Controllers\NotesController.cs" />
     <Compile Include="Controllers\PocketController.cs" />

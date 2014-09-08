@@ -13,13 +13,18 @@ namespace AppexApi.Controllers
 {
     public class NotesController : Controller
     {
-        public ActionResult Index() {
-            var files = GetFileInfo(directory: "Books");
+        public ActionResult Index(bool? isLocal) {
+            var files = GetFileInfo(directory: isLocal == true ? null : "Books");
             return View(files);
         }
 
         public ActionResult DisplayContent(string filename, string style) {
             string directory = "Books";
+            return DisplayTheContent(directory: directory, filename: filename, style: style);
+        }
+
+        public ActionResult DisplayLocalContent(string filename, string style) {
+            string directory = null; 
             return DisplayTheContent(directory: directory, filename: filename, style: style);
         }
 
@@ -55,27 +60,41 @@ namespace AppexApi.Controllers
                 nocache = keys.Where(k => k.ToLower() == "nocache" || k.ToLower() == "no-cache").Any();
             }
 
+            if (directory == null) {
+                _shared = new Shared(new LocalContentRepository(_localPath));
+            }
+            else {
+                _shared = new Shared(new DropboxContentRepository());
+            }
+
             string text = _shared.GetTextFromFile(directory: directory, filename: String.Format("{0}.txt", filename), cacheTimeoutInSeconds: nocache ? 0 : -1);
 
             return View("Content", new MarkdownViewModel { Body = text });
         }
 
         private IEnumerable<NoteInfoVM> GetFileInfo(string directory) {
-            var dropbox = _shared.GetDropBoxApiInstance();
-            var files = dropbox.GetFiles(root: "dropbox", path: directory);
+            if (directory == null) {
+                _shared = new Shared(new LocalContentRepository(_localPath));
+            }
+            else {
+                _shared = new Shared(new DropboxContentRepository());
+            }
 
-            var thefiles = files.Contents
+            var files = _shared.GetFiles(directory);
+
+            var thefiles = files
                 .Where(x => x.Path.Contains(".txt"))
                 .OrderByDescending(x => x.Modified)
                 .Select(x => new NoteInfoVM {
-                    Filename = x.Path.ToLower().Replace("/" + directory.ToLower() + "/", String.Empty).Replace(".txt", String.Empty),
+                    Filename = x.Path.ToLower().Replace("/" + (directory != null ? directory.ToLower() : String.Empty) + "/", String.Empty).Replace(".txt", String.Empty),
                     ModifiedOn = TimeZoneHelper.UtcToPacific(x.Modified.UtcDateTime)
                 });
 
             return thefiles;
         }
 
-        private Shared _shared = new Shared();
+        private string _localPath = ConfigurationManager.AppSettings["LocalNotesDirectory"];
+        private Shared _shared;
     }
 
     public class NoteInfoVM {
