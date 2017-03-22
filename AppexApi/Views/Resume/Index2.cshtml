@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "";
+}
+
+@model AppexApi.Models.Resume
+
+<html>
+<head>
+    <title>@Model.name</title>
+    <link href="~/Content/resume2.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="profile">
+            <section id="topcard" class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-picture hide" data-section="picture">
+                        @*<a class="photo" href="https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/1ee/37b/14b51ae.jpg"></a>
+                        <a href="">
+                            <img lazyload="true" class="image lazy-loaded" alt="Fernando Mendoza" width="200" height="200" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/1ee/37b/14b51ae.jpg">
+                        </a>*@
+                    </div>
+                    <div class="profile-overview">
+                        <div class="profile-overview-content ">
+                            <h1 id="name" class="fn">@Model.name</h1>
+                            <p class="headline title" data-section="headline">@Model.title</p>
+                            <dl id="demographics">
+                                <dt>Location</dt>
+                                <dd class="descriptor adr"><span class="locality">San Francisco Bay Area</span></dd>
+                                <dt>Industry</dt>
+                                <dd class="descriptor">@Model.email</dd>
+                            </dl>
+                            <table class="extra-info">
+                                <tbody>
+                                    @foreach (var link in Model.links.OrderBy(x => x.order)) {
+                                        <tr data-section="currentPositionsDetails">
+                                            <th>@link.name</th>
+                                            <td>
+                                                <ol>
+                                                    <li><span class="org"><a href="@link.url">@link.displayName</a></span></li>
+                                                </ol>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="experience" class="profile-section">
+                <h3 class="title">Experience</h3>
+                <ul class="positions">
+                    @foreach (var job in Model.jobs) {
+                        <li class="position" data-section="currentPositionsDetails">
+                            <header>
+                                <h4 class="item-title">@job.title</h4>
+                                <h5 class="item-subtitle">@job.company</h5>
+                            </header>
+                            <div class="meta">
+                                <span class="date-range">
+                                    @job.from.Date.Year - @job.to.Date.Year
+                                </span>
+                                @*<span class="location">San Francisco Bay Area</span>*@
+                            </div>
+                            <p class="description" data-section="currentPositions">
+                                @Html.Raw(job.description.Replace("\n", "<br/>"))
+                            </p>
+                        </li>
+                    }                    
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

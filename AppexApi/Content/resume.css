@@ -1,124 +1,143 @@
 ﻿body
 {
-    background-image:url("images/tree_bark.png");
-    font-family: "Lucida Console", Monaco, monospace;
-    
+    background: #dfdfdf;
+    font-family: Arial,sans-serif;
 }
 
-#main-content {
-
-}
-p, ul {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 15px 20px 20px 20px;
-}
-#name {
-    margin:0 auto;
-    width:80%;
-    height: 155px;
-    text-align: right;
-    font-size: 35px;
-    padding-top: 40px;
-    padding-bottom: 0px;
-    /*background-color: #E94E77;*//*F1EDD2 48BF9F E94E77 FA991C*/
-    margin-top: 0px;
-    margin-bottom: 0px;
-    color: white;
-
-    background-image: url("images/banner2.png");
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
-}
-
-.main-menu {
-
-    padding: 0px;
-    
-    padding-top: 10px;
-    margin:0 auto;
-    width:80%;
-    height:40px;
-    background-color: #25B5BA; /*#25B5BA#48BF9F*/
-    color: white;
-    text-align: right;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    background-image:url("images/noisy.png");
-}
-
-
-#detailed-content {
-    padding: 0px;
-    margin:0 auto;
-    width:80%;
-    height:1600px;
-    background-image:url("images/lined_paper.png");
-    padding-bottom: 5px;
-}
-.section {
-    padding:0px;
-    margin:0px;
-    width:80px;
-    height:170px;
-    background-color: #FA8258;
-    float: left;
-    position: relative;
-}
-
-.detail 
+body, div, h1, p
 {
-    padding:0px;
-    margin:0px;
-    width:90%;
-    height:170px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
-.position-section{
-    background-color: #08088A;
-    padding:10px 0px 0px 0px;
-    margin:0px;
-    width:45%;
-    height:30px;
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+#profile {
     float: left;
-color: white;
-
+    width: 646px;
 }
 
-.employeer-section{
-    background-color: #04B45F;
-    padding:10px 0px 0px 0px;
-    margin:0px;
-    width:46%;
-    height: 30px;
-    height:30px;
-    float: right;
-    color: white;
+#topcard #name {
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #000;
 }
 
-.date-section{
-    background-color: black;
-    padding:0px  0px 0px 0px;
-    margin:0px;
-    width:90%;
-    height:30px;
-    float: left;
+#topcard .headline {
+    padding: 1px 0;
+    font-size: 16px;
+    line-height: 20px;
+    color: #333;
+    font-weight: normal;
 }
 
-.project-section{
-    background-color: yellow;
-    padding:0px;
-    margin:0px;
-    width:90%;
-    height:170px;
-    float: left;
+#topcard .extra-info {
+    margin-top: 10px;
 }
 
-.tools-section{ 
-    background-color: #08088A;
-    padding:0px;
-    margin:0px;
-    width:90%;
-    height:170px;
-    float: left;
+#topcard .extra-info span.site-name {
+    font-size: 11px;
+    color: #999;
+    padding-right: 20px;
+    white-space: nowrap;
+    width: 80px;
+}
 
+#topcard .extra-info span.site-display-name {
+    font-size: 12px;
+}
+
+#topcard .extra-info span.site-name, #topcard .extra-info span.site-display-name {
+    margin-bottom: 3px;
+    padding-top: 6px;
+    vertical-align: text-top;
+    display: inline-block;
+}
+
+span, th, td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+.profile-section {
+    background: #fff;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15), -1px 0 0 rgba(0,0,0,0.03), 1px 0 0 rgba(0,0,0,0.03), 0 1px 0 rgba(0,0,0,0.12);
+}
+
+.profile-section .title {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 18px;
+    color: #434649;
+    padding: 30px 35px 0;
+}
+
+.profile-section .item-title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000;
+}
+.profile-section .item-title, .profile-section .item-subtitle {
+    margin-bottom: 5px;
+}
+
+
+.profile-section .item-subtitle {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+    color: #434649;
+}
+
+.profile-section .item-title, .profile-section .item-subtitle {
+    margin-bottom: 5px;
+}
+
+.profile-section>ul>li {
+    overflow: hidden;
+    padding: 30px 35px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-section .meta {
+    font-size: 12px;
+    line-height: 14px;
+    color: #66696a;
+}
+
+.profile-section .description {
+    font-size: 13px;
+    line-height: 17px;
+    color: #333;
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+
+.profile-overview {
+    float: none;
+    width: auto;
+    padding-left: 40px;
+    padding-right: 40px;
 }

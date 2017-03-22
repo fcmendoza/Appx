@@ -2,47 +2,55 @@
     Layout = "";
 }
 
+@model AppexApi.Models.Resume
+
 <html>
-    <head>
-        <title>monica de santiago</title>
-        <link href="~/Content/resume.css" rel="stylesheet" />
-    </head>
-    <body>
-        
-        <div id="main-content">
-            <div id="name">
-                <h1>monica de santiago</h1>
+<head>
+    <title>@Model.name</title>
+    <link href="~/Content/resume.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="profile">
+        <section id="topcard" class="profile-section profile-overview">
+            <h1 id="name">@Model.name</h1>
+            <p class="headline title">@Model.title</p>
+            <div class="extra-info">
+                @foreach (var link in Model.links) {
+                    <div>
+                        <span class="site-name">@link.name:</span>
+                        <span class="site-display-name"><a href="@link.url">@link.displayName</a></span>
+                    </div> 
+                }
             </div>
+        </section>
 
-            <div class = "main-menu"> 
-                <p> [Contact me]           [Download as pdf]</p>
-            </div>
-            <div id="detailed-content">
-                <div class = "section">
-                    <p> Tech</p>
-                </div>
-                <div class = "detail">
-                    <p>C#
-                    SQL Server
-                    ASP.NET MVC
-                    Linq
-                    JavaScript</p>
-                </div>
+        <section id="experience" class="profile-section">
+            <h3 class="title">Profesional Experience</h3>
+            <ul class="positions">
 
-                <div class = "section"><p>prof</p></div>
-                <div
-                    <div class = "position-section">Jr iOS Developer</div>
-                    <div class = "employeer-section">CGBot</div>
-                    <div class = "date-section"></div>
-                    <div class = "project-section"></div>
-                    <div class = "tools-section"></div>
-
-                    
-
-                </div>
-            </div>
-
-        </div>
-
-    </body>
+                @for (int i = 0; i < 3; i++) {
+                    <li class="position">
+                        <header>
+                            <h4 class="item-title">Senior Software Engineer</h4>
+                            <h5 class="item-subtitle">Travana Inc.</h5>
+                        </header>
+                        <div class="meta">
+                            <span class="date-range">
+                                <time>February 2016</time>  –  Present (1 year 2 months)
+                            </span>
+                            <span class="location">San Francisco Bay Area</span>
+                        </div>
+                        <p class="description">Developed the company's main product and services to allow customers search and book flights online. Developed and released to production in less than 6 months.<br>
+                            <br>
+                            Optimized code base, removing 145,000 lines of code, improving manageability and easy for engineers to understand and contribute to core product.<br>
+                            <br>
+                            Redesigned logging and exception handling, reducing debugging time by &gt;50% and allowing developers to quickly identify and locate errors in the codebase.
+                        </p>
+                    </li>
+                }
+            </ul>
+        </section>
+    </div>
+</body>
 </html>
