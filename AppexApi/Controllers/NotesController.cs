@@ -14,7 +14,12 @@ namespace AppexApi.Controllers
     public class NotesController : Controller
     {
         public ActionResult Index(bool? isLocal) {
-            var files = GetFileInfo(directory: isLocal == true ? null : "Books");
+            if (isLocal == true) {
+                var vm = GetLocalDirectoryInfo();
+                return View("Local", vm);
+            }
+
+            var files = GetFileInfo(directory: "Books");
             return View(files);
         }
 
@@ -23,8 +28,11 @@ namespace AppexApi.Controllers
             return DisplayTheContent(directory: directory, filename: filename, style: style);
         }
 
+        // Called by http://localhost/local/{filename}?style={style}
+        // e.g.:     http://localhost/local/travana?style=markdown5
         public ActionResult DisplayLocalContent(string filename, string style) {
-            string directory = null; 
+            string directory = null;
+            style = !String.IsNullOrWhiteSpace(style) ? style : "markdown5";
             return DisplayTheContent(directory: directory, filename: filename, style: style);
         }
 
@@ -72,7 +80,7 @@ namespace AppexApi.Controllers
             return View("Content", new MarkdownViewModel { Body = text });
         }
 
-        private IEnumerable<NoteInfoVM> GetFileInfo(string directory) {
+        private IEnumerable<FileInfoVM> GetFileInfo(string directory) {
             if (directory == null) {
                 _shared = new Shared(new LocalContentRepository(_localPath));
             }
@@ -85,7 +93,7 @@ namespace AppexApi.Controllers
             var thefiles = files
                 .Where(x => x.Path.Contains(".txt"))
                 .OrderByDescending(x => x.Modified)
-                .Select(x => new NoteInfoVM {
+                .Select(x => new FileInfoVM {
                     Filename = x.Path.ToLower().Replace("/" + (directory != null ? directory.ToLower() : String.Empty) + "/", String.Empty).Replace(".txt", String.Empty),
                     ModifiedOn = TimeZoneHelper.UtcToPacific(x.Modified.UtcDateTime)
                 });
@@ -93,12 +101,22 @@ namespace AppexApi.Controllers
             return thefiles;
         }
 
+        private DirectoryVM GetLocalDirectoryInfo() {
+            var files = GetFileInfo(directory: null); // when directory is null it will retrieve the files from the local directory specified in the .config file.
+            return new DirectoryVM { Name = _localPath, Files = files };
+        }
+
         private string _localPath = ConfigurationManager.AppSettings["LocalNotesDirectory"];
         private Shared _shared;
     }
 
-    public class NoteInfoVM {
+    public class FileInfoVM {
         public string Filename { get; set; }
         public DateTime ModifiedOn { get; set; }
+    }
+
+    public class DirectoryVM {
+        public string Name { get; set; }
+        public IEnumerable<FileInfoVM> Files { get; set; }
     }
 }

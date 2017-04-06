@@ -2,14 +2,14 @@
     Layout = "~/Views/Shared/_MarkdownLayout.cshtml";
 }
 
-@model IEnumerable<AppexApi.Controllers.FileInfoVM>
+@model AppexApi.Controllers.DirectoryVM
 
-<h2>Content List</h2>
+<h2>Content List on @Model.Name</h2>
 
-<p>Notes so far (dates are in Pacific Time):</p>
+<p>Local files (dates are in Pacific Time):</p>
 
 <ul>
-    @foreach (var item in Model) { 
+    @foreach (var item in Model.Files) { 
         <li><a href="@String.Format("{0}/{1}{2}", Request.Path, item.Filename, "?nocache=t&syntax=t")">@item.Filename</a>
             <span style="font-size:80%">(Updated on @String.Format("{0:MMMM dd, yyyy  HH:mm}", item.ModifiedOn))</span>
         </li>
