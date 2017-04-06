@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
 
     @if (!String.IsNullOrWhiteSpace(@ViewBag.Style)) {
-        <link href="/Content/@String.Format("{0}.css", ViewBag.Style)" rel="stylesheet"/>
+        <link href="~/Content/@String.Format("{0}.css", ViewBag.Style)" rel="stylesheet"/>
     }
     else { 
         @Styles.Render("~/Content/markdown")

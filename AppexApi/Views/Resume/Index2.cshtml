@@ -35,7 +35,11 @@
                                 <tbody>
                                     @foreach (var link in Model.links.OrderBy(x => x.order)) {
                                         <tr data-section="currentPositionsDetails">
-                                            <th>@link.name</th>
+                                            <th>@link.name
+                                                @*@if (!string.IsNullOrWhiteSpace(link.icon)) { 
+                                                    <img style="height: 12px;" src="~/Images/@link.icon" />
+                                                }*@
+                                            </th>
                                             <td>
                                                 <ol>
                                                     <li><span class="org"><a href="@link.url">@link.displayName</a></span></li>
